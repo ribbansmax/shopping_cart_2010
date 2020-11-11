@@ -33,11 +33,14 @@ class Market
     end.uniq.sort
   end
 
-  def total_inventory
-    total = {}
-    all_items = vendors.flat_map do |vendor|
+  def all_items
+    vendors.flat_map do |vendor|
       vendor.inventory.keys
     end.uniq
+  end
+
+  def total_inventory
+    total = {}
     all_items.each do |item|
       vendors = vendors_that_sell(item)
       quantity = vendors.sum do |vendor|
