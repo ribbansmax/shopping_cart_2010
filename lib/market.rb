@@ -51,4 +51,8 @@ class Market
     end
     overstocked
   end
+
+  def check_sale(item, amount)
+    total_inventory[item][:quantity] >= amount
+  end
 end
