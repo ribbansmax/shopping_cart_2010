@@ -129,4 +129,13 @@ class MarketTest < Minitest::Test
     assert_equal 0, vendor1.check_stock(item1)
     assert_equal 20, vendor2.check_stock(item1)
   end
+
+  def test_it_can_tell_date
+    Date.stubs(:today).returns(Date.parse("19251012"))
+    market = Market.new("South Pearl Street Farmers Market")
+
+    # bonus points if you can name the world famous juggler born on this day
+    # check item_test.rb for a hint
+    assert_equal "12/10/1925", market.date
+  end
 end
