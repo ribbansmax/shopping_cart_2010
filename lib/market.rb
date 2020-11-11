@@ -20,4 +20,10 @@ class Market
       vendor.check_stock(item) > 0
     end
   end
+
+  def sorted_items_list
+    vendors.flat_map do |vendor|
+      vendor.item_names
+    end.uniq.sort
+  end
 end
