@@ -39,14 +39,18 @@ class Market
     end.uniq
   end
 
+  def item_breakdown(item)
+    vendors = vendors_that_sell(item)
+    quantity = vendors.sum do |vendor|
+      vendor.check_stock(item)
+    end  
+    { quantity: quantity, vendors: vendors}
+  end
+
   def total_inventory
     total = {}
     all_items.each do |item|
-      vendors = vendors_that_sell(item)
-      quantity = vendors.sum do |vendor|
-        vendor.check_stock(item)
-      end  
-      total[item] = { quantity: quantity, vendors: vendors}
+      total[item] = item_breakdown(item)
     end
     total
   end
