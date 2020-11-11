@@ -18,4 +18,10 @@ class Vendor
       item[0].price * item[1]
     end
   end
+
+  def item_names
+    inventory.map do |item|
+      item[0].name
+    end
+  end
 end
