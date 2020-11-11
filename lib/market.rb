@@ -69,13 +69,18 @@ class Market
     total_inventory[item][:quantity] >= amount
   end
 
+  def increment_sales_from(vendor, item, amount)
+    while amount > 0 && vendor.check_stock(item) > 0 do
+      amount -= 1
+      vendor.stock(item, -1)
+    end
+    amount
+  end
+
   def sell(item, amount)
     if check_sale(item, amount)
       total_inventory[item][:vendors].each do |vendor|
-        while amount > 0 && vendor.check_stock(item) > 0 do
-          amount -= 1
-          vendor.stock(item, -1)
-        end
+        amount = increment_sales_from(vendor, item, amount)
       end
     else
       false
