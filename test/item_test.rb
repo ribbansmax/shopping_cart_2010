@@ -9,7 +9,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_can_be_juggled_by_the_fastest_female_juggler_of_all_time
-    item1 = Item.new({name: "Peach", price: "$0.75"})
+    item1 = Item.new({name: "watch?v=iLggNTZVcrI", price: "$0.75", link: "Youtube link spoils it"})
 
     assert item1
   end
